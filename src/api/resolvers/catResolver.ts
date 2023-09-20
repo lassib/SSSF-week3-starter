@@ -16,7 +16,7 @@ import {Cat} from '../../interfaces/Cat';
 const catResolver = {
   Query: {
     async cats() {
-      return await catModel.find();
+      return await catModel.find().populate('owner');
     },
     async catById(_: any, cat: Cat) {
       return await catModel.findById(cat.id).populate('owner');
@@ -33,7 +33,7 @@ const catResolver = {
       return (await catModel.create(new catModel(cat))).populate('owner');
     },
     updateCat: async (_: any, cat: Cat) => {
-      return await catModel.findOneAndUpdate(cat.id, cat, {new: true});
+      return await catModel.findOneAndUpdate({_id: cat.id}, cat, {new: true});
     },
     deleteCat: async (_: any, cat: Cat) => {
       return await catModel.findOneAndDelete({_id: cat.id});
