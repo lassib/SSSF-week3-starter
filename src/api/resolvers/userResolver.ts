@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // TODO: Add resolvers for user
 // 1. Queries
 // 1.1. users
