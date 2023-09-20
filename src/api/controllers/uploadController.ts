@@ -5,7 +5,7 @@
 
 import UploadMessageResponse from '../../interfaces/UploadMessageResponse';
 
-const catPost = async (req: any, res: any) => {
+const catPost = (req: any, res: any) => {
   try {
     const catData = {
       filename: 'cat.jpg',
