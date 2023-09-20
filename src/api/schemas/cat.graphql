@@ -7,54 +7,54 @@
 # Mutation: createCat, updateCat, deleteCat
 
 type Cat {
-    id: ID!
+  id: ID!
+  cat_name: String!
+  weight: Float
+  birthdate: String
+  owner: String
+  location: Location
+  filename: String
+}
+
+type Location {
+  type: String
+  coordinates: Coordinates
+}
+
+type Coordinates {
+  lat: Float
+  lng: Float
+}
+
+input LocationInput {
+  type: String
+  coordinates: CoordinatesInput
+}
+
+type Query {
+  catById(id: ID!): Cat
+  cats: [Cat]
+  catsByArea(location: LocationInput!): [Cat]
+  catsByOwner(owner: String!): [Cat]
+}
+
+type Mutation {
+  createCat(
     cat_name: String!
     weight: Float
     birthdate: String
     owner: String
-    location: Location
+    location: LocationInput
     filename: String
-}
-
-type Location {
-    type: String
-    coordinates: Coordinates
-}
-
-type Coordinates {
-    lat: Float
-    lng: Float
-}
-
-input LocationInput {
-    type: String
-    coordinates: CoordinatesInput
-}
-
-type Query {
-    catById(id: ID!): Cat
-    cats: [Cat]
-    catsByArea(location: LocationInput!): [Cat]
-    catsByOwner(owner: String!): [Cat]
-}
-
-type Mutation {
-    createCat(
-        cat_name: String!
-        weight: Float
-        birthdate: String
-        owner: String
-        location: LocationInput
-        filename: String
-    ): Cat
-    updateCat(
-        id: ID!
-        cat_name: String
-        weight: Float
-        birthdate: String
-        owner: String
-        location: LocationInput
-        filename: String
-    ): Cat
-    deleteCat(id: ID!): Cat
+  ): Cat
+  updateCat(
+    id: ID!
+    cat_name: String
+    weight: Float
+    birthdate: String
+    owner: String
+    location: LocationInput
+    filename: String
+  ): Cat
+  deleteCat(id: ID!): Cat
 }
